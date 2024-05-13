@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,28 +12,39 @@ namespace Practice__3._4_th__ConsoleApp1
         static void Main(string[] args)
         {
             Random r = new Random();
-            int x = r.Next(1, 101);
+            Console.WriteLine("Напишите максимальное целое число диапазона: ");
+            int n = int.Parse(Console.ReadLine());
+            int x = r.Next(0, n);
             int count = 0;
-          
-            for (; ;)
+            for (; ; )
             {
                 Console.WriteLine("Отгадайте загаданное число");
+                string input = Console.ReadLine();
                 count++;
-                int userNumber = Convert.ToInt32(Console.ReadLine());
-                if (userNumber < x)
+                if (string.IsNullOrEmpty(input))
                 {
-                    Console.WriteLine("Число меньше загаданного");
-                }
-                else if (userNumber > x)
-                {
-                    Console.WriteLine("Число больше загаданного");
+                    Console.WriteLine($"Загаданным числом было: {x}");
+                    Console.ReadKey();
+                    break;
                 }
                 else
                 {
-                    Console.WriteLine("Вы отгадали число! Ура!");
-                    Console.ReadKey();
-                    break;
-                } 
+                    int userNumber = int.Parse(input);
+                    if (userNumber < x)
+                    {
+                        Console.WriteLine("Число меньше загаданного. Возьмите побольше.");
+                    }
+                    else if (userNumber > x)
+                    {
+                        Console.WriteLine("Число больше заагаданного. Возьмите поменьше.");
+                    }
+                    else 
+                    {
+                        Console.WriteLine($"Вы угадали, это {x}");
+                        Console.ReadKey();
+                        break;
+                    }
+                }             
             }
         }
     }

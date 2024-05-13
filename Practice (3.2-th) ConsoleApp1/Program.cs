@@ -10,25 +10,33 @@ namespace Practice__3._2_th__ConsoleApp1
     {
         static void Main(string[] args)
         {
-            for (; ; )
+            bool firstNumber = false;
+
+            Console.WriteLine("Напишите число на простоту: ");
+            string NoName = Console.ReadLine();
+            int num = Convert.ToInt32(NoName);
+            int divider = 2;
+            
+            while (divider <= num - 1)
             {
-                Console.WriteLine("Напишите число на простоту");
-                int num = Convert.ToInt32(Console.ReadLine());
-                
-                while (true)
+                int remains = num % divider;
+                if (remains == 0)
                 {
-                    if ((num % 2 == 1) && (num % num == 0))
-                    {
-                        Console.WriteLine("Число простое");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Это число является составным");
-                    }
+                    firstNumber = true;
                     break;
-                    Console.ReadKey();
-                }             
+                }
+                
+                divider++;
             }
+            if (firstNumber)
+            {
+                Console.WriteLine("Составное");
+            }                
+            else
+            {
+                Console.WriteLine("Простое");
+            }
+            Console.ReadKey();
         }
     }
 }
